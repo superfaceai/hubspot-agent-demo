@@ -22,7 +22,12 @@ toolset.connected_account_id = connected_account_id
 
 # Get tools
 tools = toolset.get_tools(
-    actions=[Action.HUBSPOT_CREATE_CONTACT_OBJECT_WITH_PROPERTIES, Action.HUBSPOT_CREATE_COMPANY_OBJECT, Action.HUBSPOT_SEARCH_CONTACTS_BY_CRITERIA, Action.HUBSPOT_SEARCH_COMPANY_OBJECTS]
+    actions=[Action.HUBSPOT_CREATE_CONTACT_OBJECT_WITH_PROPERTIES, 
+             Action.HUBSPOT_CREATE_COMPANY_OBJECT, 
+             Action.HUBSPOT_SEARCH_CONTACTS_BY_CRITERIA, 
+             Action.HUBSPOT_SEARCH_COMPANY_OBJECTS,
+             Action.HUBSPOT_CREATE_NEW_DEAL_OBJECT,
+             Action.HUBSPOT_SEARCH_DEALS_BY_CRITERIA]
 )
 
 llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model="gpt-4o")
