@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from composio_crewai import ComposioToolSet, App, Action
+from composio_crewai import ComposioToolSet, Action
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
 
@@ -14,19 +14,17 @@ if not os.getenv('HUBSPOT_CONNECTED_ACCOUNT_ID'):
     print("No connected account ID found!")
     exit()
 
-# If we have a connected account ID, use it to get tools
 connected_account_id = os.getenv('HUBSPOT_CONNECTED_ACCOUNT_ID')
 print(f"Using connected account ID: {connected_account_id}")
 
 # Set the connected account ID at the toolset level
 toolset.connected_account_id = connected_account_id
 
-# Get tools without the connected_account_id parameter
+# Get tools
 tools = toolset.get_tools(
     actions=[Action.HUBSPOT_CREATE_CONTACT_OBJECT_WITH_PROPERTIES, Action.HUBSPOT_CREATE_COMPANY_OBJECT, Action.HUBSPOT_SEARCH_CONTACTS_BY_CRITERIA, Action.HUBSPOT_SEARCH_COMPANY_OBJECTS]
 )
 
-# Continue with your existing code
 llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'))
 
 crewai_agent = Agent(
