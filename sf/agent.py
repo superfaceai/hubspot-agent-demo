@@ -25,7 +25,7 @@ crewai_agent = Agent(
 )
 
 task = Task(
-    description="Create new lead John Doe, john.doe@example.com, and company ACME ltd, check for company duplicate by name.",
+    description=os.getenv("TASK_DESCRIPTION"),
     agent=crewai_agent,
     expected_output="Status of the operation"
 )
