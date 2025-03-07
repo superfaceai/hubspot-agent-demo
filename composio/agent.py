@@ -10,35 +10,6 @@ load_dotenv()
 # Initialize toolset
 toolset = ComposioToolSet(api_key=os.getenv('COMPOSIO_API_KEY'))
 
-# Set up OAuth for HubSpot
-# You'll need to get the HubSpot integration ID from Composio dashboard
-hubspot_integration_id = os.getenv('HUBSPOT_INTEGRATION_ID')  # Add this to your .env file
-
-# Get the integration details
-integrations = toolset.get_integration(id=hubspot_integration_id)
-
-# Handle the case where get_integration returns a list
-if isinstance(integrations, list):
-    # Find the right integration
-    integration = None
-    for integ in integrations:
-        if getattr(integ, 'id', None) == hubspot_integration_id:
-            integration = integ
-            break
-    
-    if integration is None and integrations:
-        # If not found by ID but list is not empty, use the first one
-        integration = integrations[0]
-        print(f"Using first available integration: {getattr(integration, 'id', 'unknown')}")
-    
-    if integration is None:
-        print("No integration found!")
-        exit()
-else:
-    # If it's already a single object
-    integration = integrations
-
-# For OAuth authentication with HubSpot
 if not os.getenv('HUBSPOT_CONNECTED_ACCOUNT_ID'):
     print("No connected account ID found!")
     exit()
@@ -78,7 +49,7 @@ crew = Crew(
     tasks = [task]
 )
 
-# Replace crew.run() with crew.kickoff()
+# Run the crew
 result = crew.kickoff()
 print("\n\n=== RESULT ===")
 print(result)
