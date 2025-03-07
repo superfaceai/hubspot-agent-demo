@@ -25,7 +25,7 @@ tools = toolset.get_tools(
     actions=[Action.HUBSPOT_CREATE_CONTACT_OBJECT_WITH_PROPERTIES, Action.HUBSPOT_CREATE_COMPANY_OBJECT, Action.HUBSPOT_SEARCH_CONTACTS_BY_CRITERIA, Action.HUBSPOT_SEARCH_COMPANY_OBJECTS]
 )
 
-llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model="gpt-4o")
 
 crewai_agent = Agent(
     role="HubSpot Agent",
