@@ -27,6 +27,13 @@ This repository comapres CrewAI agents that interact with HubSpot CRM:
    python composio/agent.py
    ```
 
+## Models Used
+
+Both agent implementations use GPT-4o:
+- The Composio CrewAI agent uses GPT-4o
+- The Superface CrewAI agent uses GPT-4o
+- The Superface Specialist itself also uses GPT-4o for its internal processing
+
 ## Test Results
 
 | Test Case | Scenario | Composio Results | Superface Results |
