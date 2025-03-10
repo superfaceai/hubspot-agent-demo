@@ -45,7 +45,7 @@ crewai_agent = Agent(
 )
 
 task = Task(
-    description=os.getenv("TASK_DESCRIPTION"),
+    description=os.getenv("TEST_PROMPT"),
     agent=crewai_agent,
     expected_output="Status of the operation"
 )
