@@ -42,3 +42,7 @@ Both agent implementations use GPT-4o:
 | **2. Create New Lead with conflicts** | Create contact and company when both already exist but aren't associated | ⚠️ **Partial Success**<br>✅ No duplicate contact/company created<br>❌ Failed to create association between contact and company (5/5 attempts) | ⚠️ **Partial Success**<br>✅ No duplicate contact/company created<br>❌ Failed to create association between contact and company (2/5 attempts) |
 | **3. Create New Deal** | Create a deal for existing contact and company | ❌ **Failure**<br>❌ Unable to create the deal due to association mapping errors | ✅ **Success**<br>✅ Created deal with proper associations<br>✅ Used default Sales pipeline and stage |
 | **4. Create engagements** | Create call engagement and tasks based on call notes for existing deal | ❌ **Failure**<br>❌ Tools for creating engagements/tasks don't exist<br>❌ Agent couldn't use "Create new deal object" tool for this purpose | ✅ **Success**<br>✅ Created call engagement with notes<br>✅ Created tasks<br>✅ Properly associated with deal |
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
