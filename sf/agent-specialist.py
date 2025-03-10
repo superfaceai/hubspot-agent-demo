@@ -35,7 +35,7 @@ llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model="gpt-4o")
 crewai_agent = Agent(
     role="HubSpot Agent",
     goal="You take action on HubSpot using HubSpot Specialist.",
-    backstory="You should delegate tasks to HubSpot Specialist to take actions on HubSpot on behalf of users.",
+    backstory="You should delegate tasks to HubSpot Specialist to take actions on HubSpot on behalf of users. In case that the specialist returns action required error and requires configure access provide the action url to the user.",
     verbose=True,
     tools=tools,
     llm=llm,
