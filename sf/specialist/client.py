@@ -8,6 +8,9 @@ from requests.models import Response
 from superface.client import SuperfaceException, SuperfaceTool
 from crewai.tools.structured_tool import CrewStructuredTool
 
+# Add this line to define the environment variable with a default value
+SUPERFACE_BASE_URL = getenv("SUPERFACE_BASE_URL", "https://superface.ai")
+
 class SuperfaceSpecialist:
     @property
     def specialist_id(self):
@@ -65,9 +68,14 @@ class SuperfaceSpecialistAPI:
     def __init__(self, *, 
                  api_key: str, 
                  specialist_id: str,
-                 base_url: str = "https://pod.superface.ai/api/specialists/"):
+                 base_url: str = None):
         self.api_key = api_key
-        self.base_url = f"{base_url}{specialist_id}"
+        
+        # Safely combine URL parts
+        if base_url is None:
+            base_url = f"{SUPERFACE_BASE_URL.rstrip('/')}/api/specialists/"
+            
+        self.base_url = f"{base_url.rstrip('/')}/{specialist_id}"
         self.specialist_id = specialist_id
 
     def get(self, *, user_id: str, path: str):
