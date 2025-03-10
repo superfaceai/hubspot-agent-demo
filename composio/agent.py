@@ -27,7 +27,10 @@ tools = toolset.get_tools(
              Action.HUBSPOT_SEARCH_CONTACTS_BY_CRITERIA, 
              Action.HUBSPOT_SEARCH_COMPANY_OBJECTS,
              Action.HUBSPOT_CREATE_NEW_DEAL_OBJECT,
-             Action.HUBSPOT_SEARCH_DEALS_BY_CRITERIA]
+             Action.HUBSPOT_SEARCH_DEALS_BY_CRITERIA,
+             Action.HUBSPOT_READ_PROPERTY_GROUPS_FOR_OBJECT_TYPE,
+             Action.HUBSPOT_LIST_ASSOCIATION_TYPES,
+             Action.HUBSPOT_CREATE_BATCH_OF_OBJECTS]
 )
 
 llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model="gpt-4o")
