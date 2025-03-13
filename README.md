@@ -1,12 +1,15 @@
-# HubSpot Agent Comparison
+# HubSpot Agent: Tools specialist vs API connectors
 
-A comparative analysis of different CrewAI agent tool providers for automating HubSpot CRM operations.
+A comparative analysis of different CrewAI agent tool providers for automating HubSpot CRM operations. 
+
+This repository serves as the foundation for comparing the performance of a tool specliast agent vs traditional API connectors. You can learn about agentic tool specialists at [Taking AI tool use to human level
+](https://superface.ai/blog/introducing-specialists).
 
 ## Purpose
 
-This repository comapres CrewAI agents that interact with HubSpot CRM:
-1. Using Composio tools
-2. Using Superface Specialist
+This repository compares the performance of CrewAI agents that interact with HubSpot CRM:
+1. Using bre-built API connectors tools (via Composio)
+2. Using [Superface Specialist](https://superface.ai/blog/introducing-specialists)
 
 # Setup
 
@@ -36,12 +39,82 @@ Both agent implementations use GPT-4o:
 
 ## Test Results
 
-| Test Case | Scenario | Composio Results | Superface Results |
-|-----------|----------|-----------------|-------------------|
-| **1. Create New Lead** | Create contact "John Doe" and company "ACME Ltd" when neither exists | ⚠️ **Partial Success**<br>✅ Created contact<br>✅ Associated contact with company<br>❌ Created two company records instead of one<br>❌ One company record lacked a name<br>❌ Other company incorrectly named "Acme Markets" | ✅ **Success**<br>✅ Created contact<br>✅ Created company<br>✅ Successfully associated contact with company |
-| **2. Create New Lead with conflicts** | Create contact and company when both already exist but aren't associated | ⚠️ **Partial Success**<br>✅ No duplicate contact/company created<br>❌ Failed to create association between contact and company (5/5 attempts) | ⚠️ **Partial Success**<br>✅ No duplicate contact/company created<br>❌ Failed to create association between contact and company (2/5 attempts) |
-| **3. Create New Deal** | Create a deal for existing contact and company | ❌ **Failure**<br>❌ Unable to create the deal due to association mapping errors | ✅ **Success**<br>✅ Created deal with proper associations<br>✅ Used default Sales pipeline and stage |
-| **4. Create engagements** | Create call engagement and tasks based on call notes for existing deal | ❌ **Failure**<br>❌ Tools for creating engagements/tasks don't exist<br>❌ Agent couldn't use "Create new deal object" tool for this purpose | ✅ **Success**<br>✅ Created call engagement with notes<br>✅ Created tasks<br>✅ Properly associated with deal |
+<table border="1" cellspacing="0" cellpadding="5">
+  <thead>
+    <tr>
+      <th>Test Case</th>
+      <th>Scenario</th>
+      <th>API connectors</th>
+      <th>Tools Specialist</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td valign="top"><strong>1. Create New Lead</strong></td>
+      <td valign="top">Create contact "John Doe" and company "ACME Ltd" when neither exists</td>
+      <td valign="top">
+        ⚠️ <strong>Partial Success</strong><br>
+        ✅ Created contact<br>
+        ✅ Associated contact with company<br>
+        ❌ Created two company records instead of one<br>
+        ❌ One company record lacked a name<br>
+        ❌ Other company incorrectly named "Acme Markets"
+      </td>
+      <td valign="top">
+        ✅ <strong>Success</strong><br>
+        ✅ Created contact<br>
+        ✅ Created company<br>
+        ✅ Successfully associated contact with company
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>2. Create New Lead with conflicts</strong></td>
+      <td valign="top">Create contact and company when both already exist but aren't associated</td>
+      <td valign="top">
+        ⚠️ <strong>Partial Success</strong><br>
+        ✅ No duplicate contact/company created<br>
+        ❌ Failed to create association between contact and company (5/5 attempts)
+      </td>
+      <td valign="top">
+        ⚠️ <strong>Partial Success</strong><br>
+        ✅ No duplicate contact/company created<br>
+        ❌ Failed to create association between contact and company (2/5 attempts)
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>3. Create New Deal</strong></td>
+      <td valign="top">Create a deal for existing contact and company</td>
+      <td valign="top">
+        ❌ <strong>Failure</strong><br>
+        ❌ Unable to create the deal due to association mapping errors
+      </td>
+      <td valign="top">
+        ✅ <strong>Success</strong><br>
+        ✅ Created deal with proper associations<br>
+        ✅ Used default Sales pipeline and stage
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><strong>4. Create engagements</strong></td>
+      <td valign="top">Create call engagement and tasks based on call notes for existing deal</td>
+      <td valign="top">
+        ❌ <strong>Failure</strong><br>
+        ❌ Tools for creating engagements/tasks don't exist<br>
+        ❌ Agent couldn't use "Create new deal object" tool for this purpose
+      </td>
+      <td valign="top">
+        ✅ <strong>Success</strong><br>
+        ✅ Created call engagement with notes<br>
+        ✅ Created tasks<br>
+        ✅ Properly associated with deal
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+   
+
 
 ## License
 
