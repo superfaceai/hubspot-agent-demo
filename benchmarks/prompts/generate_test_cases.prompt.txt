@@ -1,0 +1,311 @@
+Give me 5 different scenarios, that will end up with using any of following tools. The stories shoud start with a random person and their situation. It should not clearly mention what with functionality is necessary, but will give enough context to decide. 
+
+* Actually we will conduct the ability to use these tools, to give 5 situations where these tools will be needed, as well as their solutions. 
+* You must drop values of the input parameters with the stories.
+* The solution will be one single line just mentioning which of the tool should be used.
+
+Available tools:
+
+# Get link with tools list and configurations.
+superface_hub_configuration()
+
+# Add an association between two objects.
+hubspot__create_association__CreateAssociation(
+    fromObjectType: string, 
+    fromObjectId: string, 
+    toObjectType: string, 
+    toObjectId: string, 
+    associationLabels: array of { 
+        associationCategory: string, 
+        associationTypeId: number 
+    }
+)
+
+# Create a company with given properties and return the new ID.
+hubspot__create_company__CreateCompany(
+    name: string, 
+    domain: string, 
+    city: string, 
+    industry: string, 
+    phone: string, 
+    state: string, 
+    lifecyclestage: string | number, 
+    properties: object, 
+    associatedContacts: array of { id: string }, 
+    associatedDeals: array of { id: string }, 
+    associatedTickets: array of { id: string }, 
+    associatedObjects: array of { 
+        id: string, 
+        types: array of { 
+            associationTypeId: number, 
+            associationCategory: string 
+        } 
+    }
+)
+
+# Create a new contact with specified properties.
+hubspot__create_contact__CreateContact(
+    firstName: string, 
+    lastName: string, 
+    email: string, 
+    phone: string, 
+    company: string, 
+    website: string, 
+    lifecyclestage: string | number, 
+    properties: object
+)
+
+# Create a new deal.
+hubspot__create_deal__CreateDeal(
+    dealName: string, 
+    amountOrValue: string, 
+    closeDate: string, 
+    pipelineId: string, 
+    pipelineStageId: string, 
+    ownerId: string, 
+    properties: object
+)
+
+# Create an engagement (call, email, meeting, note, task, or postal mail).
+hubspot__create_engagement__CreateEngagement(
+    timestamp: number, 
+    associations: { 
+        contactIds: array of string, 
+        companyIds: array of string, 
+        dealIds: array of string, 
+        ticketIds: array of string 
+    }, 
+    hubspot_owner_id: string, 
+    engagement_type: string, 
+    properties: object
+)
+
+# Delete all associations between two records.
+hubspot__delete_association__DeleteAssociation(
+    fromObjectType: string, 
+    fromObjectId: string, 
+    toObjectType: string, 
+    toObjectId: string
+)
+
+# Permanently delete a company and all associated content.
+hubspot__delete_company__DeleteCompany(name: string)
+
+# Permanently delete contact by its name.
+hubspot__delete_contact__DeleteContact(search: string)
+
+# Delete a sales deal.
+hubspot__delete_deal__DeleteDeal(dealId: string)
+
+# Find association between two objects.
+hubspot__find_association__FindAssociation(
+    fromObjectType: string, 
+    fromObjectId: number, 
+    toObjectType: string, 
+    toObjectId: number
+)
+
+# Retrieve association types available between two HubSpot object types.
+hubspot__get_association_types__GetAssociationTypes(
+    fromObjectType: string, 
+    toObjectType: string, 
+    isPrimary: boolean
+)
+
+# Retrieve detailed information about a specific engagement.
+hubspot__get_engagement_details__GetEngagementDetails(engagementId: string)
+
+# Get all available properties for a specific HubSpot CRM object type.
+hubspot__get_object_properties__GetObjectProperties(
+    objectType: string, 
+    archived: boolean, 
+    groups: array of string
+)
+
+# List deal pipelines and stages.
+hubspot__list_deal_pipelines__ListDealPipelines()
+
+# List or search for companies in the CRM.
+hubspot__list_or_search_companies__ListOrSearchCompanies(
+    search: string, 
+    limit: number, 
+    after: string, 
+    properties: string, 
+    sorts: string, 
+    filterGroups: array of { 
+        filters: array of { 
+            propertyName: string, 
+            operator: string, 
+            value: string 
+        }
+    }
+)
+
+# List or search for contacts in the CRM.
+hubspot__list_or_search_contacts__ListOrSearchContacts(
+    search: string, 
+    limit: number, 
+    after: string, 
+    properties: string, 
+    sorts: string, 
+    filterGroups: array of { 
+        filters: array of { 
+            propertyName: string, 
+            operator: string, 
+            value: string 
+        }
+    }
+)
+
+# List or search for sales deals.
+hubspot__list_or_search_deals__ListOrSearchDeals(
+    query: string, 
+    limit: number, 
+    after: string, 
+    properties: string, 
+    sorts: string, 
+    filterGroups: array of { 
+        filters: array of { 
+            propertyName: string, 
+            operator: string, 
+            value: string 
+        }
+    }
+)
+
+# List or search for engagements in HubSpot CRM.
+hubspot__list_or_search_engagements__ListOrSearchEngagements(
+    search: string, 
+    limit: number, 
+    after: string, 
+    properties: string, 
+    sorts: string, 
+    type: string, 
+    filterGroups: array of { 
+        filters: array of { 
+            propertyName: string, 
+            operator: string, 
+            value: string 
+        }
+    }
+)
+
+# List pipelines in HubSpot CRM by object type.
+hubspot__list_or_search_pipelines__ListOrSearchPipelines(
+    objectType: string, 
+    id: string, 
+    label: string
+)
+
+# List owners within an organization.
+hubspot__list_organization_owners__ListOrganizationOwners(limit: number)
+
+# Update a company's properties in the CRM.
+hubspot__update_company__UpdateCompany(
+    companyId: string, 
+    name: string, 
+    domain: string, 
+    city: string, 
+    industry: string, 
+    phone: string, 
+    state: string, 
+    lifecyclestage: string | number, 
+    properties: object
+)
+
+# Update a contact's properties in the CRM.
+hubspot__update_contact__UpdateContact(
+    contactId: string, 
+    firstName: string, 
+    lastName: string, 
+    email: string, 
+    phone: string, 
+    company: string, 
+    website: string, 
+    lifecyclestage: string | number, 
+    properties: object
+)
+
+# Update a specific deal with new properties.
+hubspot__update_deal__UpdateDeal(
+    id: string, 
+    dealName: string, 
+    amountOrValue: string, 
+    closeDate: string, 
+    pipelineId: string, 
+    pipelineStageId: string, 
+    ownerId: string, 
+    properties: object
+)
+
+# Fetch and filter lists of job postings from the Teamtailor API.
+job_management__list_jobs__RetrieveJobListings(
+    includeRelations: string, 
+    filter: { 
+        jobStatus: string, 
+        jobFeed: string, 
+        departmentId: string, 
+        roleId: string, 
+        locationId: string, 
+        regionId: string, 
+        tags: string, 
+        remoteStatus: string, 
+        createdAtFrom: string, 
+        createdAtTo: string, 
+        updatedAtFrom: string, 
+        updatedAtTo: string 
+    }, 
+    page: { 
+        size: number, 
+        number: number 
+    }, 
+    sort: string
+)
+
+# Create a Dell customized Opportunity.
+salesforce_dell__list_opportunities__CreateDellOpportunity(
+    Name: string, 
+    CloseDate: string, 
+    StageName: string, 
+    EngagementType: string, 
+    PrimaryCompetitorLineOfBusiness: string, 
+    PrimaryCompetitor: string, 
+    BusinessNotes: string, 
+    JustificationStatement: string, 
+    PreSalesPartnerActivities: array of string, 
+    OtherPreSalesPartnerActivities: string, 
+    SystemsAndServices: string, 
+    PartnerSalesRepName: string, 
+    PartnerSalesRepEmail: string, 
+    PhoneNumberOfPartnersSalesRep: string, 
+    SolutionDomain: string, 
+    SolutionType: string, 
+    SolutionName: string, 
+    APEXOpportunity: boolean, 
+    ISGTechRefreshOppty: boolean, 
+    SerialNumber: string, 
+    SolutionScope: string, 
+    SalesServiceDeliveryTypes: array of string
+)
+
+
+Example output (format it as json):
+
+{
+    "intent": "Liam, a senior business analyst at a mid-sized SaaS company, just got news that they’re acquiring a smaller competitor, DataFlow Inc. His boss asks him to integrate the company into their CRM to ensure a seamless transition. Since DataFlow already has multiple deals in negotiation and existing customer relationships, Liam must ensure those records are properly associated with the new company entry.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__create_company__CreateCompany",
+        "tool_input": "{\"name\":\"DataFlow Inc.\", \"domain\":\"dataflow.io\", \"city\":\"San Francisco\", \"industry\":\"B2B Software\", \"phone\":\"+1 415 789 4321\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  }
+
+Add such questions, but even harder(Must mention all the parameters of the fucntion that is to be called, but subtly throughout the story)
+
+Make more scenarios, more complex. We want to take the tast at higher complexity level, to even put some false or trap type context, make the contexts bigger so that the determination and parameter extraction takes more skill.
+
+May result in up to 3 function calls.

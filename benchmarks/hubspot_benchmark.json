@@ -1,0 +1,38 @@
+[
+  {
+    "intent": "List latest contacts.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__list-or-search-contacts__ListOrSearchContacts",
+        "tool_input": "{\"limit\":10,\"sorts\":\"createdate:DESCENDING\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  {
+    "intent": "Megan needs to create a contact record for David Clarkson, david.clarkson@innovatech.com, +44 20 7946 0123, innovatech.com so the sales team can track and engage with him.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__create-contact__CreateContact",
+        "tool_input": "{\"email\":\"david.clarkson@innovatech.com\",\"phone\":\"+44 20 7946 0123\",\"website\":\"innovatech.com\",\"firstName\":\"David\",\"lastName\":\"Clarkson\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  {
+    "intent": "Greg needs to search for the deal 'Corporate Financial Overhaul' to check its status and recent activity.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__list-or-search-deals__ListOrSearchDeals",
+        "tool_input": "{\"query\":\"Corporate Financial Overhaul\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  }
+]
