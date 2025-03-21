@@ -44,6 +44,7 @@ Both agent implementations use GPT-4o:
     <tr>
       <th>Test Case</th>
       <th>Scenario</th>
+      <th>Prompt</th>
       <th>API connectors</th>
       <th>Tools Specialist</th>
     </tr>
@@ -52,6 +53,7 @@ Both agent implementations use GPT-4o:
     <tr>
       <td valign="top"><strong>1. Create New Lead</strong></td>
       <td valign="top">Create contact "John Doe" and company "ACME Ltd" when neither exists</td>
+      <td valign="top">Create a new lead, John Doe (john.doe@acme.com), and the company ACME Ltd (acme.com). Check for duplicate companies by name.</td>
       <td valign="top">
         ⚠️ <strong>Partial Success</strong><br>
         ✅ Created contact<br>
@@ -70,6 +72,7 @@ Both agent implementations use GPT-4o:
     <tr>
       <td valign="top"><strong>2. Create New Lead with conflicts</strong></td>
       <td valign="top">Create contact and company when both already exist but aren't associated</td>
+      <td valign="top">Create a new lead, John Doe (john.doe@acme.com), and the company ACME Ltd (acme.com). Check for duplicate companies by name.</td>
       <td valign="top">
         ⚠️ <strong>Partial Success</strong><br>
         ✅ No duplicate contact/company created<br>
@@ -84,6 +87,7 @@ Both agent implementations use GPT-4o:
     <tr>
       <td valign="top"><strong>3. Create New Deal</strong></td>
       <td valign="top">Create a deal for existing contact and company</td>
+      <td valign="top">Create a new deal for ACME ltd with John Doe as the contact.</td>
       <td valign="top">
         ❌ <strong>Failure</strong><br>
         ❌ Unable to create the deal due to association mapping errors
@@ -97,6 +101,7 @@ Both agent implementations use GPT-4o:
     <tr>
       <td valign="top"><strong>4. Create engagements</strong></td>
       <td valign="top">Create call engagement and tasks based on call notes for existing deal</td>
+      <td valign="top">Create a call engagement and relevant tasks based on the call notes for the deal New Deal for ACME Ltd. This is the record from the call: Call with John Doe from ACME. Frustrated with manual sales processes, spreadsheets everywhere, and lack of automation. Using Pipedrive and HubSpot but not getting enough efficiency. Interested in lead scoring, follow-up automation, and reporting. Needs CFO approval, decision in 4–6 weeks, considering competitors but open to a pilot if we show quick value. Sending recap and confirming demo for March 15 at 2 PM EST, prepping the demo with a focus on automation and reporting, sending case studies, and following up in two weeks. Solid opportunity if we move fast. </td>
       <td valign="top">
         ❌ <strong>Failure</strong><br>
         ❌ Tools for creating engagements/tasks don't exist<br>
