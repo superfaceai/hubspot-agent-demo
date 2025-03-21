@@ -1,0 +1,107 @@
+[
+  {
+    "intent": "List latest contacts.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__list-or-search-contacts__ListOrSearchContacts",
+        "tool_input": "{\"limit\":10,\"sorts\":\"createdate:DESCENDING\"}",
+        "optional_tool_input_keys": ["limit"],
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  {
+    "intent": "Megan needs to create a contact record for David Clarkson, david.clarkson@innovatech.com, +44 20 7946 0123, innovatech.com so the sales team can track and engage with him.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__create-contact__CreateContact",
+        "tool_input": "{\"email\":\"david.clarkson@innovatech.com\",\"phone\":\"+44 20 7946 0123\",\"website\":\"innovatech.com\",\"firstName\":\"David\",\"lastName\":\"Clarkson\"}",
+        "optional_tool_input_keys": ["website", "company"],
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  {
+    "intent": "Greg needs to search for the deal 'Corporate Financial Overhaul' to check its status and recent activity.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__list-or-search-deals__ListOrSearchDeals",
+        "tool_input": "{\"query\":\"Corporate Financial Overhaul\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  {
+    "intent": "John needs to retrieve past engagements (calls, emails, meetings) related to Clara Reynolds to prepare the CEO for an important meeting.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__list-or-search-contacts__ListOrSearchContacts",
+        "tool_input": "{\"search\":\"Clara Reynolds\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      },
+      {
+        "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
+        "tool_input": "{\"type\": \"CALL\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      },
+      {
+        "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
+        "tool_input": "{\"type\": \"EMAIL\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      },
+      {
+        "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
+        "tool_input": "{\"type\": \"MEETING\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      },
+      {
+        "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
+        "tool_input": "{\"type\": \"TASK\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      },
+      {
+        "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
+        "tool_input": "{\"type\": \"NOTE\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  },
+  {
+    "intent": "Create a new lead, John Doe (john.doe@acme.com), and the company ACME Ltd (acme.com). Check for duplicate companies by name. Associate the lead with the company.",
+    "expected_tool_calls": [
+      {
+        "tool_name": "hubspot__list-or-search-companies__ListOrSearchCompanies",
+        "tool_input": "{\"search\":\"ACME Ltd\"}",
+        "tool_output": {
+          "status": "completed"
+        }
+      },
+      {
+        "tool_name": "hubspot__create-contact__CreateContact",
+        "tool_input": "{\"email\":\"john.doe@acme.com\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"associations\":[{\"to\":{\"id\":\"<ID>\"},\"types\":[{\"associationTypeId\":1,\"associationCategory\":\"HUBSPOT_DEFINED\"}]}]}",
+        "optional_tool_input_keys": [],
+        "tool_output": {
+          "status": "completed"
+        }
+      }
+    ]
+  }
+]
