@@ -4,7 +4,12 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
+
+prompt = sys.argv[1] if len(sys.argv) > 1 else os.getenv("TEST_PROMPT")
+if not prompt:
+    print("No prompt provided! Please provide a prompt as argument or set TEST_PROMPT environment variable.")
+    exit()
 
 # Add the project root to the Python path
 sys.path.append(str(Path(__file__).parent.parent))
@@ -46,7 +51,7 @@ crewai_agent = Agent(
 )
 
 task = Task(
-    description=os.getenv("TEST_PROMPT"),
+    description=prompt,
     agent=crewai_agent,
     expected_output="Status of the operation"
 )

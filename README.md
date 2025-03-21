@@ -11,23 +11,55 @@ This repository compares the performance of CrewAI agents that interact with Hub
 1. Using bre-built API connectors tools (via Composio)
 2. Using [Superface Specialist](https://superface.ai/blog/introducing-specialists)
 
-# Setup
+## Prerequisites
+- Python 3.11 or 3.12 installed
+
+## Setup
 
 1. Clone the repository
 2. Install dependencies:
    ```
    pip install -r requirements.txt
    ```
-3. Create a `.env` file based on `.env.example` with your API keys:
+3. Create a `.env` file based on `.env.example` with your API keys
+
+4. Setup Composio account
+   - Create and configure a Composio account
+   - Connect your HubSpot account in Composio
+   - Add these variables to your `.env` file:
+     ```
+     COMPOSIO_API_KEY=your_composio_api_key
+     HUBSPOT_CONNECTED_ACCOUNT_ID=your_hubspot_account_id
+     ```
+
+5. Setup Superface account
+   - Create a Superface account
+   - Install the HubSpot Toolkit in Superface
+   - Add this variable to your `.env` file:
+     ```
+     SUPERFACE_API_KEY=your_superface_api_key
+     ```
+
+6. OpenAI API key
+   - Add your OpenAI API key to the `.env` file:
+     ```
+     OPENAI_API_KEY=your_openai_api_key
+     ```
+
+## Run the agents
+
+You can run three different agent implementations with HubSpot connected tools:
+1. CrewAI agent with Composio API connectors
    ```
-   COMPOSIO_API_KEY=your_composio_api_key
-   OPENAI_API_KEY=your_openai_api_key
-   HUBSPOT_CONNECTED_ACCOUNT_ID=your_hubspot_account_id
-   TEST_PROMPT=your_TEST_PROMPT
+   python composio/agent.py "your prompt here"
    ```
-4. Run the agent:
+2. CrewAI agent with Superface Tools
    ```
-   python composio/agent.py
+   python sf/agent.py "your prompt here"
+   ```
+3. CrewAI agent with Superface Tools Specialist
+   ```
+   python sf/agent-specialist.py "your prompt here"
    ```
 
 ## Models Used

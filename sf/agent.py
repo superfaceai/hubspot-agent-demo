@@ -1,11 +1,17 @@
 import os
+import sys
 from superface.crewai import Superface
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
+
+prompt = sys.argv[1] if len(sys.argv) > 1 else os.getenv("TEST_PROMPT")
+if not prompt:
+    print("No prompt provided! Please provide a prompt as argument or set TEST_PROMPT environment variable.")
+    exit()
 
 superface = Superface(
     api_key=os.getenv("SUPERFACE_API_KEY")
@@ -29,7 +35,7 @@ crewai_agent = Agent(
 )
 
 task = Task(
-    description=os.getenv("TEST_PROMPT"),
+    description=prompt,
     agent=crewai_agent,
     expected_output="Status of the operation"
 )

@@ -1,11 +1,17 @@
 import os
+import sys
 from dotenv import load_dotenv
 from composio_crewai import ComposioToolSet, Action
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
+
+prompt = sys.argv[1] if len(sys.argv) > 1 else os.getenv("TEST_PROMPT")
+if not prompt:
+    print("No prompt provided! Please provide a prompt as argument or set TEST_PROMPT environment variable.")
+    exit()
 
 # Initialize toolset
 toolset = ComposioToolSet(api_key=os.getenv('COMPOSIO_API_KEY'))
@@ -45,7 +51,7 @@ crewai_agent = Agent(
 )
 
 task = Task(
-    description=os.getenv("TEST_PROMPT"),
+    description=prompt,
     agent=crewai_agent,
     expected_output="Status of the operation"
 )
