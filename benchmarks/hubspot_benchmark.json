@@ -49,38 +49,55 @@
       },
       {
         "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
-        "tool_input": "{\"type\": \"CALL\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_input": "{\"type\": \"CALL\", \"contactId\": \"1\"}",
         "tool_output": {
           "status": "completed"
+        },
+        "input_patterns": {
+          "contactId": "^[0-9]+$"
         }
       },
       {
         "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
-        "tool_input": "{\"type\": \"EMAIL\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_input": "{\"type\": \"EMAIL\", \"contactId\": \"1\"}",
         "tool_output": {
           "status": "completed"
+        },
+        "input_patterns": {
+          "contactId": "^[0-9]+$"
         }
       },
       {
         "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
-        "tool_input": "{\"type\": \"MEETING\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_input": "{\"type\": \"MEETING\", \"contactId\": \"1\"}",
         "tool_output": {
           "status": "completed"
+        },
+        "input_patterns": {
+          "contactId": "^[0-9]+$"
         }
       },
       {
         "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
-        "tool_input": "{\"type\": \"TASK\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_input": "{\"type\": \"TASK\", \"contactId\": \"1\"}",
         "tool_output": {
           "status": "completed"
-        }
+        },
+        "input_patterns": {
+          "contactId": "^[0-9]+$"
+        },
+        "optional": true
       },
       {
         "tool_name": "hubspot__list-or-search-engagements__ListOrSearchEngagements",
-        "tool_input": "{\"type\": \"NOTE\", \"contactId\": \"<CONTACT_ID>\"}",
+        "tool_input": "{\"type\": \"NOTE\", \"contactId\": \"1\"}",
         "tool_output": {
           "status": "completed"
-        }
+        },
+        "input_patterns": {
+          "contactId": "^[0-9]+$"
+        },
+        "optional": true
       }
     ]
   },
@@ -96,11 +113,35 @@
       },
       {
         "tool_name": "hubspot__create-contact__CreateContact",
-        "tool_input": "{\"email\":\"john.doe@acme.com\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"associations\":[{\"to\":{\"id\":\"<ID>\"},\"types\":[{\"associationTypeId\":1,\"associationCategory\":\"HUBSPOT_DEFINED\"}]}]}",
-        "optional_tool_input_keys": [],
+        "tool_input": "{\"email\":\"john.doe@acme.com\",\"firstName\":\"John\",\"lastName\":\"Doe\",\"associations\":[{\"to\":{\"id\":\"1\"},\"types\":[{\"associationTypeId\":1,\"associationCategory\":\"HUBSPOT_DEFINED\"}]}]}",
+        "optional_tool_input_keys": ["associations"],
         "tool_output": {
           "status": "completed"
+        },
+        "input_patterns": {
+          "associations[0].to.id": "^[0-9]+$"
         }
+      },
+      {
+        "tool_name": "hubspot__get-association-types__GetAssociationTypes",
+        "tool_input": "{\"fromObjectType\":\"contact\",\"toObjectType\":\"company\"}",
+        "tool_output": {
+          "status": "completed"
+        },
+        "optional": true
+      },
+      {
+        "tool_name": "hubspot__create-association__CreateAssociation",
+        "tool_input": "{\"fromObjectId\":\"1\",\"fromObjectType\":\"contact\",\"toObjectId\":\"2\",\"toObjectType\":\"company\",\"associationLabels\":[{\"associationCategory\":\"HUBSPOT_DEFINED\",\"associationTypeId\":279}]}",
+        "tool_output": {
+          "status": "completed"
+        },
+        "input_patterns": {
+          "fromObjectId": "^[0-9]+$",
+          "toObjectId": "^[0-9]+$",
+          "associationLabels[0].associationTypeId": "^[0-9]+$"
+        },
+        "optional": true
       }
     ]
   }
