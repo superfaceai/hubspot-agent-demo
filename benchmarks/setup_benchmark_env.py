@@ -15,7 +15,9 @@ def setup_benchmark_environment(specialist_id: str = "hubspot"):
         "runs_per_test": int(os.getenv("BENCHMARK_RUNS_PER_TEST", 3)),
         "model": os.getenv("BENCHMARK_MODEL", "gpt-4o"),
         "specialist_id": specialist_id,
-        "superface_api_key": os.getenv("SUPERFACE_API_KEY")
+        "superface_api_key": os.getenv("SUPERFACE_API_KEY"),
+        "temperature": float(os.getenv("BENCHMARK_TEMPERATURE", "0.1")),
+        "seed": int(os.getenv("BENCHMARK_SEED", "0")) or None  # Convert 0 to None
     }
     
     # Validate required environment variables

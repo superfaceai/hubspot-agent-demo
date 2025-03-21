@@ -17,7 +17,7 @@ from langchain_openai import ChatOpenAI
 
 from superface.client import Superface
 
-def run(prompt: str, specialist_id: str = "hubspot", user_id: str = "user_123", model: str = "gpt-4o"):
+def run(prompt: str, specialist_id: str = "hubspot", user_id: str = "user_123", model: str = "gpt-4o", temperature: float = 0.1, seed: int = 42):
     """
     Run a specialist agent with the provided prompt and return the result.
     
@@ -26,6 +26,8 @@ def run(prompt: str, specialist_id: str = "hubspot", user_id: str = "user_123", 
         specialist_id: The ID of the specialist to use (default: "hubspot")
         user_id: The user ID to use for tool connections (default: "user_123")
         model: The LLM model to use (default: "gpt-4o")
+        temperature: The temperature setting for the LLM (default: 0.1)
+        seed: The random seed for the LLM (default: 42)
         
     Returns:
         A dictionary containing the result and tool calls
@@ -42,7 +44,7 @@ def run(prompt: str, specialist_id: str = "hubspot", user_id: str = "user_123", 
     )
     
     # Initialize the LLM
-    llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model=model)
+    llm = ChatOpenAI(api_key=os.getenv('OPENAI_API_KEY'), model=model, temperature=temperature, seed=seed)
     
     # Create the agent
     crewai_agent = Agent(

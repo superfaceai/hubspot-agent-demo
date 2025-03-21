@@ -2,7 +2,7 @@ import json
 import statistics
 from datetime import datetime
 
-def compile_benchmark_results(benchmark_results, bench_data, num_runs_per_test, benchmark_name="Superface Specialist Benchmark"):
+def compile_benchmark_results(benchmark_results, bench_data, num_runs_per_test, benchmark_name="Superface Specialist Benchmark", environment=None):
     """
     Compile benchmark results into a structured format with summary statistics.
     
@@ -11,6 +11,7 @@ def compile_benchmark_results(benchmark_results, bench_data, num_runs_per_test, 
         bench_data: Original benchmark test data
         num_runs_per_test: Number of runs per test case
         benchmark_name: Name of the benchmark
+        environment: Dictionary containing environment variables to include in results
         
     Returns:
         Dictionary containing compiled results and statistics
@@ -26,6 +27,10 @@ def compile_benchmark_results(benchmark_results, bench_data, num_runs_per_test, 
         "success_rate": (sum(1 for r in benchmark_results if r['success']) / len(bench_data)) * 100,
         "tool_call_match_rate": (sum(1 for r in benchmark_results if r.get('tool_calls_match', False)) / len(bench_data)) * 100
     }
+    
+    # Add environment variables to the results if provided
+    if environment:
+        final_results["environment"] = environment
 
     # For JSON serialization, convert CrewOutput objects to strings
     serializable_results = []
