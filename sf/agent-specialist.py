@@ -4,7 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
 
 # Add the project root to the Python path
 sys.path.append(str(Path(__file__).parent.parent))

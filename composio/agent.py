@@ -5,7 +5,7 @@ from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
 
 # Load environment variables
-load_dotenv()
+load_dotenv(override=True)
 
 # Initialize toolset
 toolset = ComposioToolSet(api_key=os.getenv('COMPOSIO_API_KEY'))
