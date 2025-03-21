@@ -2,6 +2,10 @@ import os
 from superface.crewai import Superface
 from crewai import Agent, Task, Crew
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 superface = Superface(
     api_key=os.getenv("SUPERFACE_API_KEY")
