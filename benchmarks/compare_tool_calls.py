@@ -27,6 +27,10 @@ def compare_tool_calls(expected_calls, actual_calls):
         expected_input = json.loads(expected['tool_input']) if isinstance(expected['tool_input'], str) else expected['tool_input']
         expected_status = expected['tool_output']['status']
         
+        # Get optional keys if they exist
+        optional_keys = expected.get('optional_tool_input_keys', [])
+        print(f"Optional keys: {optional_keys}")
+        
         # Find a matching actual call
         match_found = False
         matched_call_index = -1
@@ -50,6 +54,11 @@ def compare_tool_calls(expected_calls, actual_calls):
             # Check if all expected keys are in actual input
             keys_match = True
             for key, value in expected_input.items():
+                # Skip checking optional keys if they're not in the actual input
+                if key in optional_keys and key not in actual_input:
+                    print(f"Skipping optional key: {key}")
+                    continue
+                    
                 if key not in actual_input:
                     keys_match = False
                     break
