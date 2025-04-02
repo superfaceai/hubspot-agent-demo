@@ -14,7 +14,7 @@ if not prompt:
     exit()
 
 
-# Get Superface tools
+# Get Merge tools
 tools = get_tools()
 
 # Continue with your existing code
